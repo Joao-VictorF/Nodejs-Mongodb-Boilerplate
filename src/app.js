@@ -1,22 +1,25 @@
-// Server
+// Setup
+require('module-alias/register')
+require('dotenv').config();
 const express    = require('express');
+const app        = express();
+
+// Server
 const bodyParser = require('body-parser');
 const cors       = require('cors');
-require('module-alias/register')
 
 // Loggers
 const morgan     = require('morgan');
+const logger     = require('@common/winston');
 
 // Routing and connections
 const router     = require('@routes/routes');
-const mongoose = require('mongoose');
-
-require('dotenv').config();
-
-const app = express();
+const mongoose   = require('mongoose');
 
 // ----------------------------- DATABASE CONNECTION --------------------------
-const uri = process.env.DB_DEV_URI;
+const uri = process.env.NODE_ENV === 'development'
+  ? process.env.DB_DEV_URI
+  : process.env.DB_PRODUCTION_URI;
 
 mongoose.connect(uri, {
   useNewUrlParser: true,
@@ -37,12 +40,10 @@ db.on('error', err => {
     level: 'error',
     message: errMsg
   });
-  console.log(errMsg);
 });
 
 // --------------------------- LOGGING -----------------------------
 
-const logger     = require('@common/winston');
 app.use(morgan('dev')); // HTTP requests in development
 
 // ----------------------------- APP -------------------------------

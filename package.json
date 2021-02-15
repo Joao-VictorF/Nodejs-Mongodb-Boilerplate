@@ -15,9 +15,7 @@
     "@routes": "src/routes",
     "@common": "src/common",
     "@controllers": "src/controllers",
-    "@database": "src/database",
-    "@models": "src/database/models",
-    "@config": "src/database/config"
+    "@models": "src/models"
   },
   "author": "João Victor Freitas R. De Sousa",
   "license": "MIT",

@@ -1,6 +1,6 @@
-const User      = require("@models/user");
+const User   = require("@models/user");
 const logger = require('@common/winston');
-const jwt = require('jsonwebtoken');
+const jwt    = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
 const { ReasonPhrases, StatusCodes } = require('http-status-codes')
